@@ -1,0 +1,17 @@
+node_modules/
+dist/
+dist-electron/
+
+
+.env
+.env.local
+server/.env
+
+*.log
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+
+# Dados locais: bases do MovieLens (centenas de MB) e avaliações com os títulos que a pessoa viu
+dados/

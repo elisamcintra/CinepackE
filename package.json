@@ -1,0 +1,37 @@
+{
+  "name": "hub-pessoal",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n web,api -c magenta,cyan \"vite\" \"npm --prefix server run dev\"",
+    "dev:web": "vite",
+    "dev:server": "npm --prefix server run dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "postinstall": "npm install --prefix server",
+    "start": "vite build && npm --prefix server run producao",
+    "test": "node --test \"tests/*.test.js\"",
+    "mineracao:baixar": "node scripts/mineracao/baixar.js",
+    "mineracao": "node scripts/mineracao/executar.js",
+    "mineracao:teste": "node scripts/mineracao/baixar.js --base=pequena && node scripts/mineracao/executar.js --base=pequena",
+    "mineracao:conteudo": "node --env-file=server/.env scripts/mineracao/baixar-conteudo.js",
+    "mineracao:experimentos": "node --max-old-space-size=6144 scripts/mineracao/experimentos.js",
+    "avaliar:usuario": "node --env-file=server/.env scripts/avaliacao/usuario.js",
+    "avaliar:comparar": "node --env-file=server/.env scripts/avaliacao/comparar.js",
+    "avaliar:trakt": "node --env-file=server/.env scripts/avaliacao/trakt-cobertura.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
+    "papaparse": "^5.7.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router": "^8.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.4"
+  }
+}

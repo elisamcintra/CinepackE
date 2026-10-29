@@ -1,0 +1,1790 @@
+{
+  "gerado_em": "2026-10-27T17:10:32.916Z",
+  "b0": {
+    "modelo": {
+      "pessoas": 3000,
+      "hit_rate_10": 0.7513333333333333,
+      "precision_10": 0.20593333333333524,
+      "recall_10": 0.2186560389443291,
+      "ndcg_10": 0.2963788034594788,
+      "popularidade_media": 0.19172167187221195,
+      "posicao_popularidade": 0.01004689056725053,
+      "cobertura": 0.08998875140607424,
+      "listas_vazias": 0
+    },
+    "populares": {
+      "pessoas": 3000,
+      "hit_rate_10": 0.5353333333333333,
+      "precision_10": 0.11086666666666682,
+      "recall_10": 0.10916924206309614,
+      "ndcg_10": 0.15150962678905486,
+      "popularidade_media": 0.2656714036263841,
+      "posicao_popularidade": 0.0015190208366811198,
+      "cobertura": 0.016390808291820665,
+      "listas_vazias": 0
+    },
+    "cold_start": {
+      "1": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.3270967741935484,
+        "precision_10": 0.04116129032258096,
+        "recall_10": 0.04116129032258096,
+        "ndcg_10": 0.04143055851471017,
+        "popularidade_media": 0.10031631890292776,
+        "posicao_popularidade": 0.07593630289301401,
+        "cobertura": 0.3417965611441427,
+        "listas_vazias": 0
+      },
+      "3": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.4070967741935484,
+        "precision_10": 0.055548387096774135,
+        "recall_10": 0.055548387096774135,
+        "ndcg_10": 0.05802613138065306,
+        "popularidade_media": 0.15557385886906103,
+        "posicao_popularidade": 0.028375557893972937,
+        "cobertura": 0.18335208098987626,
+        "listas_vazias": 0
+      },
+      "5": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.43806451612903224,
+        "precision_10": 0.06109677419354828,
+        "recall_10": 0.06109677419354828,
+        "ndcg_10": 0.06473642165287045,
+        "popularidade_media": 0.17717542115296067,
+        "posicao_popularidade": 0.016776629879790405,
+        "cobertura": 0.12469869837698859,
+        "listas_vazias": 0
+      },
+      "10": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.48,
+        "precision_10": 0.06709677419354805,
+        "recall_10": 0.06709677419354805,
+        "ndcg_10": 0.0711826558867933,
+        "popularidade_media": 0.1993547310838871,
+        "posicao_popularidade": 0.00965308714290897,
+        "cobertura": 0.07424071991001124,
+        "listas_vazias": 0
+      },
+      "20": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.5193548387096775,
+        "precision_10": 0.07445161290322524,
+        "recall_10": 0.07445161290322524,
+        "ndcg_10": 0.07856665772032247,
+        "popularidade_media": 0.21018170317980522,
+        "posicao_popularidade": 0.007107006785442139,
+        "cobertura": 0.05158283785955327,
+        "listas_vazias": 0
+      },
+      "40": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.5606451612903226,
+        "precision_10": 0.08909677419354774,
+        "recall_10": 0.08909677419354774,
+        "ndcg_10": 0.09766004263902697,
+        "popularidade_media": 0.21215483964846937,
+        "posicao_popularidade": 0.006273097199255617,
+        "cobertura": 0.044672987305158285,
+        "listas_vazias": 0
+      }
+    },
+    "cold_start_populares": {
+      "pessoas": 1550,
+      "hit_rate_10": 0.4064516129032258,
+      "precision_10": 0.056580645161290244,
+      "recall_10": 0.056580645161290244,
+      "ndcg_10": 0.06034371069851173,
+      "popularidade_media": 0.28762382539945286,
+      "posicao_popularidade": 0.0009460637696785567,
+      "cobertura": 0.0044994375703037125,
+      "listas_vazias": 0
+    }
+  },
+  "antigo": {
+    "modelo": {
+      "pessoas": 3000,
+      "hit_rate_10": 0.7296666666666667,
+      "precision_10": 0.17370000000000171,
+      "recall_10": 0.20001309505038886,
+      "ndcg_10": 0.26063133463129423,
+      "popularidade_media": 0.18977220221421873,
+      "posicao_popularidade": 0.01216586319567198,
+      "cobertura": 0.11586051743532058,
+      "listas_vazias": 0
+    },
+    "populares": {
+      "pessoas": 3000,
+      "hit_rate_10": 0.5353333333333333,
+      "precision_10": 0.11086666666666682,
+      "recall_10": 0.10916924206309614,
+      "ndcg_10": 0.15150962678905486,
+      "popularidade_media": 0.2656714036263841,
+      "posicao_popularidade": 0.0015190208366811198,
+      "cobertura": 0.016390808291820665,
+      "listas_vazias": 0
+    },
+    "cold_start": {
+      "1": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.3270967741935484,
+        "precision_10": 0.04116129032258096,
+        "recall_10": 0.04116129032258096,
+        "ndcg_10": 0.04143055851471017,
+        "popularidade_media": 0.10031631890292776,
+        "posicao_popularidade": 0.07593630289301401,
+        "cobertura": 0.3417965611441427,
+        "listas_vazias": 0
+      },
+      "3": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.4070967741935484,
+        "precision_10": 0.055548387096774135,
+        "recall_10": 0.055548387096774135,
+        "ndcg_10": 0.05802613138065306,
+        "popularidade_media": 0.15557385886906103,
+        "posicao_popularidade": 0.028375557893972937,
+        "cobertura": 0.18335208098987626,
+        "listas_vazias": 0
+      },
+      "5": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.43806451612903224,
+        "precision_10": 0.06109677419354828,
+        "recall_10": 0.06109677419354828,
+        "ndcg_10": 0.06473642165287045,
+        "popularidade_media": 0.17717542115296067,
+        "posicao_popularidade": 0.016776629879790405,
+        "cobertura": 0.12469869837698859,
+        "listas_vazias": 0
+      },
+      "10": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.48,
+        "precision_10": 0.06709677419354805,
+        "recall_10": 0.06709677419354805,
+        "ndcg_10": 0.0711826558867933,
+        "popularidade_media": 0.1993547310838871,
+        "posicao_popularidade": 0.00965308714290897,
+        "cobertura": 0.07424071991001124,
+        "listas_vazias": 0
+      },
+      "20": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.5193548387096775,
+        "precision_10": 0.07445161290322524,
+        "recall_10": 0.07445161290322524,
+        "ndcg_10": 0.07856665772032247,
+        "popularidade_media": 0.21018170317980522,
+        "posicao_popularidade": 0.007107006785442139,
+        "cobertura": 0.05158283785955327,
+        "listas_vazias": 0
+      },
+      "40": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.5606451612903226,
+        "precision_10": 0.08909677419354774,
+        "recall_10": 0.08909677419354774,
+        "ndcg_10": 0.09766004263902697,
+        "popularidade_media": 0.21215483964846937,
+        "posicao_popularidade": 0.006273097199255617,
+        "cobertura": 0.044672987305158285,
+        "listas_vazias": 0
+      }
+    },
+    "cold_start_populares": {
+      "pessoas": 1550,
+      "hit_rate_10": 0.4064516129032258,
+      "precision_10": 0.056580645161290244,
+      "recall_10": 0.056580645161290244,
+      "ndcg_10": 0.06034371069851173,
+      "popularidade_media": 0.28762382539945286,
+      "posicao_popularidade": 0.0009460637696785567,
+      "cobertura": 0.0044994375703037125,
+      "listas_vazias": 0
+    }
+  },
+  "final": {
+    "params": {
+      "modelo": "item-item",
+      "alfa": 0.5,
+      "easeLambda": 500,
+      "easeAPartirDe": 20,
+      "pesoUsuario": "binario",
+      "meiaVidaUsuarioDias": 0,
+      "meiaVidaPessoaDias": 0,
+      "conteudo": [
+        "tmdb",
+        "tags"
+      ],
+      "gamaConteudo": 0.35,
+      "limiteBase": 0
+    },
+    "teste": {
+      "modelo": {
+        "pessoas": 3000,
+        "hit_rate_10": 0.8026666666666666,
+        "precision_10": 0.2691333333333362,
+        "recall_10": 0.2653822978010906,
+        "ndcg_10": 0.3721012522888874,
+        "popularidade_media": 0.1642402846853026,
+        "posicao_popularidade": 0.019073721142000098,
+        "cobertura": 0.165193636509722,
+        "listas_vazias": 0
+      },
+      "populares": {
+        "pessoas": 3000,
+        "hit_rate_10": 0.5353333333333333,
+        "precision_10": 0.11086666666666682,
+        "recall_10": 0.10916924206309614,
+        "ndcg_10": 0.15150962678905486,
+        "popularidade_media": 0.2656714036263841,
+        "posicao_popularidade": 0.0015190208366811198,
+        "cobertura": 0.016390808291820665,
+        "listas_vazias": 0
+      },
+      "cold_start": {
+        "1": {
+          "pessoas": 1550,
+          "hit_rate_10": 0.31483870967741934,
+          "precision_10": 0.04025806451612931,
+          "recall_10": 0.04025806451612931,
+          "ndcg_10": 0.040414552332095864,
+          "popularidade_media": 0.09155570196239367,
+          "posicao_popularidade": 0.09486122760000633,
+          "cobertura": 0.40012855535915154,
+          "listas_vazias": 0
+        },
+        "3": {
+          "pessoas": 1550,
+          "hit_rate_10": 0.3967741935483871,
+          "precision_10": 0.05341935483870966,
+          "recall_10": 0.05341935483870966,
+          "ndcg_10": 0.055838277512277,
+          "popularidade_media": 0.14559582559458675,
+          "posicao_popularidade": 0.040814232322342256,
+          "cobertura": 0.2240077133215491,
+          "listas_vazias": 0
+        },
+        "5": {
+          "pessoas": 1550,
+          "hit_rate_10": 0.4367741935483871,
+          "precision_10": 0.06064516129032244,
+          "recall_10": 0.06064516129032244,
+          "ndcg_10": 0.06307535951517614,
+          "popularidade_media": 0.1685847506996097,
+          "posicao_popularidade": 0.024367492081922924,
+          "cobertura": 0.15764100915956933,
+          "listas_vazias": 0
+        },
+        "10": {
+          "pessoas": 1550,
+          "hit_rate_10": 0.49096774193548387,
+          "precision_10": 0.06954838709677383,
+          "recall_10": 0.06954838709677383,
+          "ndcg_10": 0.0723459759557947,
+          "popularidade_media": 0.19370196876404522,
+          "posicao_popularidade": 0.01202739058539342,
+          "cobertura": 0.09047083400289249,
+          "listas_vazias": 0
+        },
+        "20": {
+          "pessoas": 1550,
+          "hit_rate_10": 0.5251612903225806,
+          "precision_10": 0.08051612903225752,
+          "recall_10": 0.08051612903225752,
+          "ndcg_10": 0.08451688696625113,
+          "popularidade_media": 0.13854689190296995,
+          "posicao_popularidade": 0.03158983583273292,
+          "cobertura": 0.1608548931383577,
+          "listas_vazias": 0
+        },
+        "40": {
+          "pessoas": 1550,
+          "hit_rate_10": 0.6270967741935484,
+          "precision_10": 0.1146451612903216,
+          "recall_10": 0.1146451612903216,
+          "ndcg_10": 0.12522042808866504,
+          "popularidade_media": 0.15556860062835381,
+          "posicao_popularidade": 0.022289736824371596,
+          "cobertura": 0.12694841716214045,
+          "listas_vazias": 0
+        }
+      },
+      "cold_start_populares": {
+        "pessoas": 1550,
+        "hit_rate_10": 0.4064516129032258,
+        "precision_10": 0.056580645161290244,
+        "recall_10": 0.056580645161290244,
+        "ndcg_10": 0.06034371069851173,
+        "popularidade_media": 0.28762382539945286,
+        "posicao_popularidade": 0.0009460637696785567,
+        "cobertura": 0.0044994375703037125,
+        "listas_vazias": 0
+      }
+    }
+  },
+  "melhorias": [
+    {
+      "id": "M1",
+      "nome": "Base completa (todos os títulos, sem limite de 12 favoritos)",
+      "antes": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [],
+          "gamaConteudo": 0,
+          "limiteBase": 12
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7236666666666667,
+          "precision_10": 0.17036666666666836,
+          "recall_10": 0.19932995518615576,
+          "ndcg_10": 0.25914719636785943,
+          "popularidade_media": 0.18827065770030965,
+          "posicao_popularidade": 0.011966827360865634,
+          "cobertura": 0.11312871605335048,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7296666666666667,
+          "precision_10": 0.17370000000000171,
+          "recall_10": 0.20001309505038886,
+          "ndcg_10": 0.26063133463129423,
+          "popularidade_media": 0.18977220221421873,
+          "posicao_popularidade": 0.01216586319567198,
+          "cobertura": 0.11586051743532058,
+          "listas_vazias": 0
+        }
+      },
+      "variacoes": [
+        {
+          "mudanca": {
+            "limiteBase": 0
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.755,
+            "precision_10": 0.20323333333333543,
+            "recall_10": 0.21958114333534262,
+            "ndcg_10": 0.2951462098163757,
+            "popularidade_media": 0.1923281518668075,
+            "posicao_popularidade": 0.00978445551448928,
+            "cobertura": 0.08886389201349831,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        }
+      ],
+      "decisao": {
+        "aceita": true,
+        "mudanca": {
+          "limiteBase": 0
+        }
+      },
+      "depois": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [],
+          "gamaConteudo": 0,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.755,
+          "precision_10": 0.20323333333333543,
+          "recall_10": 0.21958114333534262,
+          "ndcg_10": 0.2951462098163757,
+          "popularidade_media": 0.1923281518668075,
+          "posicao_popularidade": 0.00978445551448928,
+          "cobertura": 0.08886389201349831,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7513333333333333,
+          "precision_10": 0.20593333333333524,
+          "recall_10": 0.2186560389443291,
+          "ndcg_10": 0.2963788034594788,
+          "popularidade_media": 0.19172167187221195,
+          "posicao_popularidade": 0.01004689056725053,
+          "cobertura": 0.08998875140607424,
+          "listas_vazias": 0
+        },
+        "cold_start": {
+          "1": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.3270967741935484,
+            "precision_10": 0.04116129032258096,
+            "recall_10": 0.04116129032258096,
+            "ndcg_10": 0.04143055851471017,
+            "popularidade_media": 0.10031631890292776,
+            "posicao_popularidade": 0.07593630289301401,
+            "cobertura": 0.3417965611441427,
+            "listas_vazias": 0
+          },
+          "3": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.4070967741935484,
+            "precision_10": 0.055548387096774135,
+            "recall_10": 0.055548387096774135,
+            "ndcg_10": 0.05802613138065306,
+            "popularidade_media": 0.15557385886906103,
+            "posicao_popularidade": 0.028375557893972937,
+            "cobertura": 0.18335208098987626,
+            "listas_vazias": 0
+          },
+          "5": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.43806451612903224,
+            "precision_10": 0.06109677419354828,
+            "recall_10": 0.06109677419354828,
+            "ndcg_10": 0.06473642165287045,
+            "popularidade_media": 0.17717542115296067,
+            "posicao_popularidade": 0.016776629879790405,
+            "cobertura": 0.12469869837698859,
+            "listas_vazias": 0
+          },
+          "10": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.48,
+            "precision_10": 0.06709677419354805,
+            "recall_10": 0.06709677419354805,
+            "ndcg_10": 0.0711826558867933,
+            "popularidade_media": 0.1993547310838871,
+            "posicao_popularidade": 0.00965308714290897,
+            "cobertura": 0.07424071991001124,
+            "listas_vazias": 0
+          },
+          "20": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.5193548387096775,
+            "precision_10": 0.07445161290322524,
+            "recall_10": 0.07445161290322524,
+            "ndcg_10": 0.07856665772032247,
+            "popularidade_media": 0.21018170317980522,
+            "posicao_popularidade": 0.007107006785442139,
+            "cobertura": 0.05158283785955327,
+            "listas_vazias": 0
+          },
+          "40": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.5606451612903226,
+            "precision_10": 0.08909677419354774,
+            "recall_10": 0.08909677419354774,
+            "ndcg_10": 0.09766004263902697,
+            "popularidade_media": 0.21215483964846937,
+            "posicao_popularidade": 0.006273097199255617,
+            "cobertura": 0.044672987305158285,
+            "listas_vazias": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "M2",
+      "nome": "Viés de popularidade (cosseno assimétrico, α)",
+      "antes": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [],
+          "gamaConteudo": 0,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.755,
+          "precision_10": 0.20323333333333543,
+          "recall_10": 0.21958114333534262,
+          "ndcg_10": 0.2951462098163757,
+          "popularidade_media": 0.1923281518668075,
+          "posicao_popularidade": 0.00978445551448928,
+          "cobertura": 0.08886389201349831,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7513333333333333,
+          "precision_10": 0.20593333333333524,
+          "recall_10": 0.2186560389443291,
+          "ndcg_10": 0.2963788034594788,
+          "popularidade_media": 0.19172167187221195,
+          "posicao_popularidade": 0.01004689056725053,
+          "cobertura": 0.08998875140607424,
+          "listas_vazias": 0
+        }
+      },
+      "variacoes": [
+        {
+          "mudanca": {
+            "alfa": 0.55
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7553333333333333,
+            "precision_10": 0.20796666666666871,
+            "recall_10": 0.22310446189517327,
+            "ndcg_10": 0.30218754549545,
+            "popularidade_media": 0.17739231259603389,
+            "posicao_popularidade": 0.012725962826075311,
+            "cobertura": 0.1054153945042584,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        },
+        {
+          "mudanca": {
+            "alfa": 0.6
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7633333333333333,
+            "precision_10": 0.21220000000000203,
+            "recall_10": 0.22726631600342997,
+            "ndcg_10": 0.3056392903154881,
+            "popularidade_media": 0.16078518264448646,
+            "posicao_popularidade": 0.0169644651561412,
+            "cobertura": 0.12614494616744334,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        },
+        {
+          "mudanca": {
+            "alfa": 0.7
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7513333333333333,
+            "precision_10": 0.20640000000000194,
+            "recall_10": 0.21815584429447113,
+            "ndcg_10": 0.29035633469123434,
+            "popularidade_media": 0.12524088613800521,
+            "posicao_popularidade": 0.030315351652471956,
+            "cobertura": 0.175960147838663,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        },
+        {
+          "mudanca": {
+            "alfa": 0.8
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.6956666666666667,
+            "precision_10": 0.1666000000000012,
+            "recall_10": 0.17752606976208804,
+            "ndcg_10": 0.2305107558776129,
+            "popularidade_media": 0.08391856205685737,
+            "posicao_popularidade": 0.05861590872569509,
+            "cobertura": 0.23605977824200547,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        }
+      ],
+      "decisao": {
+        "aceita": false,
+        "motivo": "revertida no teste (A6: cold start com 20 títulos piorou)",
+        "mudanca": {
+          "alfa": 0.6
+        }
+      },
+      "depois": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.6,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [],
+          "gamaConteudo": 0,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7633333333333333,
+          "precision_10": 0.21220000000000203,
+          "recall_10": 0.22726631600342997,
+          "ndcg_10": 0.3056392903154881,
+          "popularidade_media": 0.16078518264448646,
+          "posicao_popularidade": 0.0169644651561412,
+          "cobertura": 0.12614494616744334,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.77,
+          "precision_10": 0.21450000000000266,
+          "recall_10": 0.22762640100162967,
+          "ndcg_10": 0.3084153152103513,
+          "popularidade_media": 0.16086643921637944,
+          "posicao_popularidade": 0.017267111253950446,
+          "cobertura": 0.12823397075365578,
+          "listas_vazias": 0
+        },
+        "cold_start": {
+          "1": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.2806451612903226,
+            "precision_10": 0.03438709677419378,
+            "recall_10": 0.03438709677419378,
+            "ndcg_10": 0.035682610476688935,
+            "popularidade_media": 0.07450446018373819,
+            "posicao_popularidade": 0.10753202739058543,
+            "cobertura": 0.41764422304354815,
+            "listas_vazias": 0
+          },
+          "3": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.38903225806451613,
+            "precision_10": 0.05006451612903234,
+            "recall_10": 0.05006451612903234,
+            "ndcg_10": 0.053436236810509796,
+            "popularidade_media": 0.11775627653658872,
+            "posicao_popularidade": 0.04859945156624997,
+            "cobertura": 0.24714767796882534,
+            "listas_vazias": 0
+          },
+          "5": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.4341935483870968,
+            "precision_10": 0.057935483870967586,
+            "recall_10": 0.057935483870967586,
+            "ndcg_10": 0.06061786788305136,
+            "popularidade_media": 0.13598838848484526,
+            "posicao_popularidade": 0.031327323715871915,
+            "cobertura": 0.18399485778563393,
+            "listas_vazias": 0
+          },
+          "10": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.48451612903225805,
+            "precision_10": 0.06561290322580611,
+            "recall_10": 0.06561290322580611,
+            "ndcg_10": 0.06883956547313175,
+            "popularidade_media": 0.157831623642335,
+            "posicao_popularidade": 0.018551989757040737,
+            "cobertura": 0.11811023622047244,
+            "listas_vazias": 0
+          },
+          "20": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.515483870967742,
+            "precision_10": 0.07419354838709628,
+            "recall_10": 0.07419354838709628,
+            "ndcg_10": 0.0782259424772259,
+            "popularidade_media": 0.16979227686047188,
+            "posicao_popularidade": 0.01390139596605721,
+            "cobertura": 0.08452514864213402,
+            "listas_vazias": 0
+          },
+          "40": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.5851612903225807,
+            "precision_10": 0.09470967741935404,
+            "recall_10": 0.09470967741935404,
+            "ndcg_10": 0.1021125192850273,
+            "popularidade_media": 0.1755995254406748,
+            "posicao_popularidade": 0.011553249392213078,
+            "cobertura": 0.06572392736622208,
+            "listas_vazias": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "M3",
+      "nome": "Intensidade das notas e sinal negativo; EASE",
+      "antes": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [],
+          "gamaConteudo": 0,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.755,
+          "precision_10": 0.20323333333333543,
+          "recall_10": 0.21958114333534262,
+          "ndcg_10": 0.2951462098163757,
+          "popularidade_media": 0.1923281518668075,
+          "posicao_popularidade": 0.00978445551448928,
+          "cobertura": 0.08886389201349831,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7513333333333333,
+          "precision_10": 0.20593333333333524,
+          "recall_10": 0.2186560389443291,
+          "ndcg_10": 0.2963788034594788,
+          "popularidade_media": 0.19172167187221195,
+          "posicao_popularidade": 0.01004689056725053,
+          "cobertura": 0.08998875140607424,
+          "listas_vazias": 0
+        }
+      },
+      "variacoes": [
+        {
+          "mudanca": {
+            "pesoUsuario": "notas"
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7386666666666667,
+            "precision_10": 0.1978666666666687,
+            "recall_10": 0.20735184354195255,
+            "ndcg_10": 0.283607903379145,
+            "popularidade_media": 0.18710031960836307,
+            "posicao_popularidade": 0.011484332315603401,
+            "cobertura": 0.11634260003213884,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        },
+        {
+          "mudanca": {
+            "modelo": "ease",
+            "easeLambda": 500
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.8373333333333334,
+            "precision_10": 0.2739000000000026,
+            "recall_10": 0.2941645637941183,
+            "ndcg_10": 0.39180814963147836,
+            "popularidade_media": 0.14739028996880144,
+            "posicao_popularidade": 0.02559169746638816,
+            "cobertura": 0.19636831110396916,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        },
+        {
+          "mudanca": {
+            "modelo": "ease",
+            "easeLambda": 500,
+            "pesoUsuario": "notas"
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.8326666666666667,
+            "precision_10": 0.2673000000000026,
+            "recall_10": 0.28496632116028336,
+            "ndcg_10": 0.38173897788116834,
+            "popularidade_media": 0.14695455913967345,
+            "posicao_popularidade": 0.026690572606995568,
+            "cobertura": 0.2125984251968504,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        },
+        {
+          "mudanca": {
+            "modelo": "ease",
+            "easeLambda": 2000
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.838,
+            "precision_10": 0.2711000000000027,
+            "recall_10": 0.2917332014448405,
+            "ndcg_10": 0.38820603075887555,
+            "popularidade_media": 0.15114318073549757,
+            "posicao_popularidade": 0.02154149124216618,
+            "cobertura": 0.16647919010123735,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        },
+        {
+          "mudanca": {
+            "modelo": "ease",
+            "easeLambda": 2000,
+            "pesoUsuario": "notas"
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.8266666666666667,
+            "precision_10": 0.2644000000000027,
+            "recall_10": 0.28118471062221373,
+            "ndcg_10": 0.37818298726622923,
+            "popularidade_media": 0.15156971602493793,
+            "posicao_popularidade": 0.021920842037602452,
+            "cobertura": 0.1757994536397236,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        }
+      ],
+      "decisao": {
+        "aceita": false,
+        "motivo": "revertida no teste (A6: com 5 títulos não supera \"mais populares\")",
+        "mudanca": {
+          "modelo": "ease",
+          "easeLambda": 500
+        }
+      },
+      "depois": {
+        "params": {
+          "modelo": "ease",
+          "alfa": 0.5,
+          "easeLambda": 500,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [],
+          "gamaConteudo": 0,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.8373333333333334,
+          "precision_10": 0.2739000000000026,
+          "recall_10": 0.2941645637941183,
+          "ndcg_10": 0.39180814963147836,
+          "popularidade_media": 0.14739028996880144,
+          "posicao_popularidade": 0.02559169746638816,
+          "cobertura": 0.19636831110396916,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.8393333333333334,
+          "precision_10": 0.27763333333333634,
+          "recall_10": 0.29071563113442367,
+          "ndcg_10": 0.3936461745997625,
+          "popularidade_media": 0.1454805128977999,
+          "posicao_popularidade": 0.026118019176174314,
+          "cobertura": 0.20263538486260646,
+          "listas_vazias": 0
+        },
+        "cold_start": {
+          "1": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.3006451612903226,
+            "precision_10": 0.035935483870968,
+            "recall_10": 0.035935483870968,
+            "ndcg_10": 0.03768888870175381,
+            "popularidade_media": 0.08183941695656088,
+            "posicao_popularidade": 0.08857814662568109,
+            "cobertura": 0.39434356419733246,
+            "listas_vazias": 0
+          },
+          "3": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.3561290322580645,
+            "precision_10": 0.04600000000000014,
+            "recall_10": 0.04600000000000014,
+            "ndcg_10": 0.04855725759065517,
+            "popularidade_media": 0.09781948774482552,
+            "posicao_popularidade": 0.06497544488966533,
+            "cobertura": 0.30515828378595533,
+            "listas_vazias": 0
+          },
+          "5": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.39419354838709675,
+            "precision_10": 0.05251612903225805,
+            "recall_10": 0.05251612903225805,
+            "ndcg_10": 0.05443142837235699,
+            "popularidade_media": 0.10734513864196704,
+            "posicao_popularidade": 0.055311254295977975,
+            "cobertura": 0.25807488349670576,
+            "listas_vazias": 0
+          },
+          "10": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.45225806451612904,
+            "precision_10": 0.06232258064516112,
+            "recall_10": 0.06232258064516112,
+            "ndcg_10": 0.0654919587231187,
+            "popularidade_media": 0.12295075952458924,
+            "posicao_popularidade": 0.043048825118058506,
+            "cobertura": 0.2082596818254861,
+            "listas_vazias": 0
+          },
+          "20": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.5251612903225806,
+            "precision_10": 0.08051612903225752,
+            "recall_10": 0.08051612903225752,
+            "ndcg_10": 0.08451688696625113,
+            "popularidade_media": 0.13854689190296995,
+            "posicao_popularidade": 0.03158983583273292,
+            "cobertura": 0.1608548931383577,
+            "listas_vazias": 0
+          },
+          "40": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.6270967741935484,
+            "precision_10": 0.1146451612903216,
+            "recall_10": 0.1146451612903216,
+            "ndcg_10": 0.12522042808866504,
+            "popularidade_media": 0.15556860062835381,
+            "posicao_popularidade": 0.022289736824371596,
+            "cobertura": 0.12694841716214045,
+            "listas_vazias": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "M4",
+      "nome": "Recência (notas da pessoa e pessoas da mineração)",
+      "antes": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [],
+          "gamaConteudo": 0,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.755,
+          "precision_10": 0.20323333333333543,
+          "recall_10": 0.21958114333534262,
+          "ndcg_10": 0.2951462098163757,
+          "popularidade_media": 0.1923281518668075,
+          "posicao_popularidade": 0.00978445551448928,
+          "cobertura": 0.08886389201349831,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7513333333333333,
+          "precision_10": 0.20593333333333524,
+          "recall_10": 0.2186560389443291,
+          "ndcg_10": 0.2963788034594788,
+          "popularidade_media": 0.19172167187221195,
+          "posicao_popularidade": 0.01004689056725053,
+          "cobertura": 0.08998875140607424,
+          "listas_vazias": 0
+        }
+      },
+      "variacoes": [
+        {
+          "mudanca": {
+            "meiaVidaUsuarioDias": 730
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.754,
+            "precision_10": 0.20336666666666883,
+            "recall_10": 0.21944668253347982,
+            "ndcg_10": 0.2949428518774987,
+            "popularidade_media": 0.192057634655594,
+            "posicao_popularidade": 0.009863367079115134,
+            "cobertura": 0.08886389201349831,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        },
+        {
+          "mudanca": {
+            "meiaVidaPessoaDias": 1825
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.749,
+            "precision_10": 0.2021666666666689,
+            "recall_10": 0.2168364447911182,
+            "ndcg_10": 0.29376106068895463,
+            "popularidade_media": 0.19406301550923366,
+            "posicao_popularidade": 0.009875585194707812,
+            "cobertura": 0.08934597461031657,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        },
+        {
+          "mudanca": {
+            "meiaVidaUsuarioDias": 730,
+            "meiaVidaPessoaDias": 1825
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7496666666666667,
+            "precision_10": 0.20186666666666883,
+            "recall_10": 0.21694862312742066,
+            "ndcg_10": 0.29336741429256363,
+            "popularidade_media": 0.1938310415075118,
+            "posicao_popularidade": 0.009890390486903426,
+            "cobertura": 0.08918528041137715,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        }
+      ],
+      "decisao": {
+        "aceita": false,
+        "motivo": "nenhuma variação cumpriu a regra na validação"
+      }
+    },
+    {
+      "id": "M5",
+      "nome": "Conteúdo do TMDB (palavras-chave, direção, elenco, coleção)",
+      "antes": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [],
+          "gamaConteudo": 0,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.755,
+          "precision_10": 0.20323333333333543,
+          "recall_10": 0.21958114333534262,
+          "ndcg_10": 0.2951462098163757,
+          "popularidade_media": 0.1923281518668075,
+          "posicao_popularidade": 0.00978445551448928,
+          "cobertura": 0.08886389201349831,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7513333333333333,
+          "precision_10": 0.20593333333333524,
+          "recall_10": 0.2186560389443291,
+          "ndcg_10": 0.2963788034594788,
+          "popularidade_media": 0.19172167187221195,
+          "posicao_popularidade": 0.01004689056725053,
+          "cobertura": 0.08998875140607424,
+          "listas_vazias": 0
+        }
+      },
+      "variacoes": [
+        {
+          "mudanca": {
+            "conteudo": [
+              "tmdb"
+            ],
+            "gamaConteudo": 0.1
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7543333333333333,
+            "precision_10": 0.20410000000000214,
+            "recall_10": 0.2197675400455459,
+            "ndcg_10": 0.2967722411466478,
+            "popularidade_media": 0.19206944855864436,
+            "posicao_popularidade": 0.009981514810648679,
+            "cobertura": 0.08982805720713483,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        },
+        {
+          "mudanca": {
+            "conteudo": [
+              "tmdb"
+            ],
+            "gamaConteudo": 0.2
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7566666666666667,
+            "precision_10": 0.20553333333333565,
+            "recall_10": 0.22131280755252866,
+            "ndcg_10": 0.29912421017469537,
+            "popularidade_media": 0.1915489640011848,
+            "posicao_popularidade": 0.010242819647544069,
+            "cobertura": 0.09288124698698377,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        },
+        {
+          "mudanca": {
+            "conteudo": [
+              "tmdb"
+            ],
+            "gamaConteudo": 0.35
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.761,
+            "precision_10": 0.20690000000000222,
+            "recall_10": 0.2227117390501154,
+            "ndcg_10": 0.30187925836489576,
+            "popularidade_media": 0.19038361422491074,
+            "posicao_popularidade": 0.01102976056564358,
+            "cobertura": 0.10059456853607585,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        }
+      ],
+      "decisao": {
+        "aceita": true,
+        "mudanca": {
+          "conteudo": [
+            "tmdb"
+          ],
+          "gamaConteudo": 0.35
+        }
+      },
+      "depois": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [
+            "tmdb"
+          ],
+          "gamaConteudo": 0.35,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.761,
+          "precision_10": 0.20690000000000222,
+          "recall_10": 0.2227117390501154,
+          "ndcg_10": 0.30187925836489576,
+          "popularidade_media": 0.19038361422491074,
+          "posicao_popularidade": 0.01102976056564358,
+          "cobertura": 0.10059456853607585,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.758,
+          "precision_10": 0.20983333333333562,
+          "recall_10": 0.22273402404431908,
+          "ndcg_10": 0.3027341970457795,
+          "popularidade_media": 0.18956778209119163,
+          "posicao_popularidade": 0.011379372221329492,
+          "cobertura": 0.10188012212759119,
+          "listas_vazias": 0
+        },
+        "cold_start": {
+          "1": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.3096774193548387,
+            "precision_10": 0.03916129032258091,
+            "recall_10": 0.03916129032258091,
+            "ndcg_10": 0.03894744499879631,
+            "popularidade_media": 0.09282162433469418,
+            "posicao_popularidade": 0.10008690964320725,
+            "cobertura": 0.4150731158605174,
+            "listas_vazias": 0
+          },
+          "3": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.40258064516129033,
+            "precision_10": 0.053483870967741945,
+            "recall_10": 0.053483870967741945,
+            "ndcg_10": 0.05586955235740625,
+            "popularidade_media": 0.14600769507635486,
+            "posicao_popularidade": 0.042743889732677426,
+            "cobertura": 0.22738229149927688,
+            "listas_vazias": 0
+          },
+          "5": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.4258064516129032,
+            "precision_10": 0.05993548387096766,
+            "recall_10": 0.05993548387096766,
+            "ndcg_10": 0.06361556597673056,
+            "popularidade_media": 0.16890807500209984,
+            "posicao_popularidade": 0.02551747160637179,
+            "cobertura": 0.16214044672987304,
+            "listas_vazias": 0
+          },
+          "10": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.4858064516129032,
+            "precision_10": 0.06896774193548355,
+            "recall_10": 0.06896774193548355,
+            "ndcg_10": 0.07199297998897296,
+            "popularidade_media": 0.19405643950081075,
+            "posicao_popularidade": 0.01221970525573704,
+            "cobertura": 0.08757833842198297,
+            "listas_vazias": 0
+          },
+          "20": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.5309677419354839,
+            "precision_10": 0.07593548387096713,
+            "recall_10": 0.07593548387096713,
+            "ndcg_10": 0.08053498460799074,
+            "popularidade_media": 0.20741237056196565,
+            "posicao_popularidade": 0.008134526962931474,
+            "cobertura": 0.05801060581713,
+            "listas_vazias": 0
+          },
+          "40": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.5709677419354838,
+            "precision_10": 0.09264516129032183,
+            "recall_10": 0.09264516129032183,
+            "ndcg_10": 0.10008314950983314,
+            "popularidade_media": 0.21051138008617792,
+            "posicao_popularidade": 0.00682202858283267,
+            "cobertura": 0.048368953880764905,
+            "listas_vazias": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "M6a",
+      "nome": "Conteúdo: tags do MovieLens",
+      "antes": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [
+            "tmdb"
+          ],
+          "gamaConteudo": 0.35,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.761,
+          "precision_10": 0.20690000000000222,
+          "recall_10": 0.2227117390501154,
+          "ndcg_10": 0.30187925836489576,
+          "popularidade_media": 0.19038361422491074,
+          "posicao_popularidade": 0.01102976056564358,
+          "cobertura": 0.10059456853607585,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.758,
+          "precision_10": 0.20983333333333562,
+          "recall_10": 0.22273402404431908,
+          "ndcg_10": 0.3027341970457795,
+          "popularidade_media": 0.18956778209119163,
+          "posicao_popularidade": 0.011379372221329492,
+          "cobertura": 0.10188012212759119,
+          "listas_vazias": 0
+        }
+      },
+      "variacoes": [
+        {
+          "mudanca": {
+            "conteudo": [
+              "tmdb",
+              "tags"
+            ],
+            "gamaConteudo": 0.1
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.754,
+            "precision_10": 0.20470000000000224,
+            "recall_10": 0.22052658078342058,
+            "ndcg_10": 0.29780355239285433,
+            "popularidade_media": 0.191943166357452,
+            "posicao_popularidade": 0.00996042101880123,
+            "cobertura": 0.0896673630081954,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        },
+        {
+          "mudanca": {
+            "conteudo": [
+              "tmdb",
+              "tags"
+            ],
+            "gamaConteudo": 0.2
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.758,
+            "precision_10": 0.20546666666666893,
+            "recall_10": 0.22163390519185522,
+            "ndcg_10": 0.29962632571621023,
+            "popularidade_media": 0.19174658746615508,
+            "posicao_popularidade": 0.010186260645990692,
+            "cobertura": 0.09288124698698377,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        },
+        {
+          "mudanca": {
+            "conteudo": [
+              "tmdb",
+              "tags"
+            ],
+            "gamaConteudo": 0.35
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7643333333333333,
+            "precision_10": 0.20803333333333565,
+            "recall_10": 0.22461050081184922,
+            "ndcg_10": 0.30447412689015285,
+            "popularidade_media": 0.1907807034502109,
+            "posicao_popularidade": 0.01093834699234026,
+            "cobertura": 0.10075526273501527,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        }
+      ],
+      "decisao": {
+        "aceita": true,
+        "mudanca": {
+          "conteudo": [
+            "tmdb",
+            "tags"
+          ],
+          "gamaConteudo": 0.35
+        }
+      },
+      "depois": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [
+            "tmdb",
+            "tags"
+          ],
+          "gamaConteudo": 0.35,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7643333333333333,
+          "precision_10": 0.20803333333333565,
+          "recall_10": 0.22461050081184922,
+          "ndcg_10": 0.30447412689015285,
+          "popularidade_media": 0.1907807034502109,
+          "posicao_popularidade": 0.01093834699234026,
+          "cobertura": 0.10075526273501527,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7586666666666667,
+          "precision_10": 0.21220000000000225,
+          "recall_10": 0.22559605742735261,
+          "ndcg_10": 0.3054167630261542,
+          "popularidade_media": 0.1897480708300634,
+          "posicao_popularidade": 0.01119565054368204,
+          "cobertura": 0.10123734533183353,
+          "listas_vazias": 0
+        },
+        "cold_start": {
+          "1": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.31483870967741934,
+            "precision_10": 0.04025806451612931,
+            "recall_10": 0.04025806451612931,
+            "ndcg_10": 0.040414552332095864,
+            "popularidade_media": 0.09155570196239367,
+            "posicao_popularidade": 0.09486122760000633,
+            "cobertura": 0.40012855535915154,
+            "listas_vazias": 0
+          },
+          "3": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.3967741935483871,
+            "precision_10": 0.05341935483870966,
+            "recall_10": 0.05341935483870966,
+            "ndcg_10": 0.055838277512277,
+            "popularidade_media": 0.14559582559458675,
+            "posicao_popularidade": 0.040814232322342256,
+            "cobertura": 0.2240077133215491,
+            "listas_vazias": 0
+          },
+          "5": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.4367741935483871,
+            "precision_10": 0.06064516129032244,
+            "recall_10": 0.06064516129032244,
+            "ndcg_10": 0.06307535951517614,
+            "popularidade_media": 0.1685847506996097,
+            "posicao_popularidade": 0.024367492081922924,
+            "cobertura": 0.15764100915956933,
+            "listas_vazias": 0
+          },
+          "10": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.49096774193548387,
+            "precision_10": 0.06954838709677383,
+            "recall_10": 0.06954838709677383,
+            "ndcg_10": 0.0723459759557947,
+            "popularidade_media": 0.19370196876404522,
+            "posicao_popularidade": 0.01202739058539342,
+            "cobertura": 0.09047083400289249,
+            "listas_vazias": 0
+          },
+          "20": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.5367741935483871,
+            "precision_10": 0.07709677419354773,
+            "recall_10": 0.07709677419354773,
+            "ndcg_10": 0.08092560537893646,
+            "popularidade_media": 0.207064248070405,
+            "posicao_popularidade": 0.008063469024897229,
+            "cobertura": 0.05897477101076651,
+            "listas_vazias": 0
+          },
+          "40": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.5729032258064516,
+            "precision_10": 0.09432258064516053,
+            "recall_10": 0.09432258064516053,
+            "ndcg_10": 0.10255598214367159,
+            "popularidade_media": 0.21054453318822333,
+            "posicao_popularidade": 0.006882066009029982,
+            "cobertura": 0.05029728426803792,
+            "listas_vazias": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "M6b",
+      "nome": "Conteúdo: Tag Genome (MovieLens 25M)",
+      "antes": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [
+            "tmdb",
+            "tags"
+          ],
+          "gamaConteudo": 0.35,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7643333333333333,
+          "precision_10": 0.20803333333333565,
+          "recall_10": 0.22461050081184922,
+          "ndcg_10": 0.30447412689015285,
+          "popularidade_media": 0.1907807034502109,
+          "posicao_popularidade": 0.01093834699234026,
+          "cobertura": 0.10075526273501527,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7586666666666667,
+          "precision_10": 0.21220000000000225,
+          "recall_10": 0.22559605742735261,
+          "ndcg_10": 0.3054167630261542,
+          "popularidade_media": 0.1897480708300634,
+          "posicao_popularidade": 0.01119565054368204,
+          "cobertura": 0.10123734533183353,
+          "listas_vazias": 0
+        }
+      },
+      "variacoes": [
+        {
+          "mudanca": {
+            "conteudo": [
+              "tmdb",
+              "tags",
+              "genome"
+            ],
+            "gamaConteudo": 0.1
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7553333333333333,
+            "precision_10": 0.20490000000000225,
+            "recall_10": 0.2200012024317089,
+            "ndcg_10": 0.2978816337888503,
+            "popularidade_media": 0.1918288077135616,
+            "posicao_popularidade": 0.010008570357276784,
+            "cobertura": 0.09031013980395308,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        },
+        {
+          "mudanca": {
+            "conteudo": [
+              "tmdb",
+              "tags",
+              "genome"
+            ],
+            "gamaConteudo": 0.2
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7596666666666667,
+            "precision_10": 0.20646666666666885,
+            "recall_10": 0.22176957221792015,
+            "ndcg_10": 0.30069653668586777,
+            "popularidade_media": 0.19141512882209163,
+            "posicao_popularidade": 0.010385125073651517,
+            "cobertura": 0.09432749477743853,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        },
+        {
+          "mudanca": {
+            "conteudo": [
+              "tmdb",
+              "tags",
+              "genome"
+            ],
+            "gamaConteudo": 0.35
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.7626666666666667,
+            "precision_10": 0.20890000000000225,
+            "recall_10": 0.22475360659662116,
+            "ndcg_10": 0.3052140419854027,
+            "popularidade_media": 0.18973590734995283,
+            "posicao_popularidade": 0.0113084792972307,
+            "cobertura": 0.10380845251486422,
+            "listas_vazias": 0
+          },
+          "passa_validacao": false
+        }
+      ],
+      "decisao": {
+        "aceita": false,
+        "motivo": "nenhuma variação cumpriu a regra na validação"
+      }
+    },
+    {
+      "id": "M3b",
+      "nome": "Modelo por tamanho da base: EASE para quem tem ≥ 20 títulos (variação criada DEPOIS de ver o teste da M3: o resultado no teste é otimista)",
+      "antes": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [
+            "tmdb",
+            "tags"
+          ],
+          "gamaConteudo": 0.35,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7643333333333333,
+          "precision_10": 0.20803333333333565,
+          "recall_10": 0.22461050081184922,
+          "ndcg_10": 0.30447412689015285,
+          "popularidade_media": 0.1907807034502109,
+          "posicao_popularidade": 0.01093834699234026,
+          "cobertura": 0.10075526273501527,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.7586666666666667,
+          "precision_10": 0.21220000000000225,
+          "recall_10": 0.22559605742735261,
+          "ndcg_10": 0.3054167630261542,
+          "popularidade_media": 0.1897480708300634,
+          "posicao_popularidade": 0.01119565054368204,
+          "cobertura": 0.10123734533183353,
+          "listas_vazias": 0
+        }
+      },
+      "variacoes": [
+        {
+          "mudanca": {
+            "easeAPartirDe": 20,
+            "easeLambda": 500
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.799,
+            "precision_10": 0.2652333333333358,
+            "recall_10": 0.2659423415718957,
+            "ndcg_10": 0.3699201663520353,
+            "popularidade_media": 0.16597558850379981,
+            "posicao_popularidade": 0.018459880014998136,
+            "cobertura": 0.15828378595532702,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        },
+        {
+          "mudanca": {
+            "easeAPartirDe": 20,
+            "easeLambda": 2000
+          },
+          "val": {
+            "pessoas": 3000,
+            "hit_rate_10": 0.798,
+            "precision_10": 0.26256666666666906,
+            "recall_10": 0.26367764588928466,
+            "ndcg_10": 0.36685928445404653,
+            "popularidade_media": 0.16809215790212156,
+            "posicao_popularidade": 0.01658289142428627,
+            "cobertura": 0.14108950666880926,
+            "listas_vazias": 0
+          },
+          "passa_validacao": true
+        }
+      ],
+      "decisao": {
+        "aceita": true,
+        "mudanca": {
+          "easeAPartirDe": 20,
+          "easeLambda": 500
+        }
+      },
+      "depois": {
+        "params": {
+          "modelo": "item-item",
+          "alfa": 0.5,
+          "easeLambda": 500,
+          "easeAPartirDe": 20,
+          "pesoUsuario": "binario",
+          "meiaVidaUsuarioDias": 0,
+          "meiaVidaPessoaDias": 0,
+          "conteudo": [
+            "tmdb",
+            "tags"
+          ],
+          "gamaConteudo": 0.35,
+          "limiteBase": 0
+        },
+        "val": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.799,
+          "precision_10": 0.2652333333333358,
+          "recall_10": 0.2659423415718957,
+          "ndcg_10": 0.3699201663520353,
+          "popularidade_media": 0.16597558850379981,
+          "posicao_popularidade": 0.018459880014998136,
+          "cobertura": 0.15828378595532702,
+          "listas_vazias": 0
+        },
+        "teste": {
+          "pessoas": 3000,
+          "hit_rate_10": 0.8026666666666666,
+          "precision_10": 0.2691333333333362,
+          "recall_10": 0.2653822978010906,
+          "ndcg_10": 0.3721012522888874,
+          "popularidade_media": 0.1642402846853026,
+          "posicao_popularidade": 0.019073721142000098,
+          "cobertura": 0.165193636509722,
+          "listas_vazias": 0
+        },
+        "cold_start": {
+          "1": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.31483870967741934,
+            "precision_10": 0.04025806451612931,
+            "recall_10": 0.04025806451612931,
+            "ndcg_10": 0.040414552332095864,
+            "popularidade_media": 0.09155570196239367,
+            "posicao_popularidade": 0.09486122760000633,
+            "cobertura": 0.40012855535915154,
+            "listas_vazias": 0
+          },
+          "3": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.3967741935483871,
+            "precision_10": 0.05341935483870966,
+            "recall_10": 0.05341935483870966,
+            "ndcg_10": 0.055838277512277,
+            "popularidade_media": 0.14559582559458675,
+            "posicao_popularidade": 0.040814232322342256,
+            "cobertura": 0.2240077133215491,
+            "listas_vazias": 0
+          },
+          "5": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.4367741935483871,
+            "precision_10": 0.06064516129032244,
+            "recall_10": 0.06064516129032244,
+            "ndcg_10": 0.06307535951517614,
+            "popularidade_media": 0.1685847506996097,
+            "posicao_popularidade": 0.024367492081922924,
+            "cobertura": 0.15764100915956933,
+            "listas_vazias": 0
+          },
+          "10": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.49096774193548387,
+            "precision_10": 0.06954838709677383,
+            "recall_10": 0.06954838709677383,
+            "ndcg_10": 0.0723459759557947,
+            "popularidade_media": 0.19370196876404522,
+            "posicao_popularidade": 0.01202739058539342,
+            "cobertura": 0.09047083400289249,
+            "listas_vazias": 0
+          },
+          "20": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.5251612903225806,
+            "precision_10": 0.08051612903225752,
+            "recall_10": 0.08051612903225752,
+            "ndcg_10": 0.08451688696625113,
+            "popularidade_media": 0.13854689190296995,
+            "posicao_popularidade": 0.03158983583273292,
+            "cobertura": 0.1608548931383577,
+            "listas_vazias": 0
+          },
+          "40": {
+            "pessoas": 1550,
+            "hit_rate_10": 0.6270967741935484,
+            "precision_10": 0.1146451612903216,
+            "recall_10": 0.1146451612903216,
+            "ndcg_10": 0.12522042808866504,
+            "popularidade_media": 0.15556860062835381,
+            "posicao_popularidade": 0.022289736824371596,
+            "cobertura": 0.12694841716214045,
+            "listas_vazias": 0
+          }
+        }
+      }
+    }
+  ]
+}
