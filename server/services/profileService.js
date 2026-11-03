@@ -18,6 +18,7 @@ import { iaGerarPerfil, iaDisponivel } from './aiService.js';
 import * as movielens from './movielensService.js';
 import { limparHistorico } from './historyService.js';
 import { montarBase } from './movielensBase.js';
+import { montarBaseSeries, prepararSeries } from './seriesService.js';
 import { construirAssinatura, resumoAssinatura } from './tasteSignature.js';
 import { getTitle, keywordId } from './tmdbService.js';
 
@@ -393,6 +394,10 @@ export async function gerarPerfil(db, userId) {
 
   // Perfil novo = recomendações antigas não valem mais
   await db.from('recommendation_cache').delete().eq('user_id', userId);
+
+  // Prepara o componente de séries em segundo plano (catálogo, fichas e Trakt das séries desta pessoa):
+  // quem acabou de importar o histórico recebe as recomendações sem esperar tudo isso na primeira vez
+  prepararSeries(montarBaseSeries(dados)).catch((e) => console.warn('[series] preparação em segundo plano:', e.message));
 
   return final;
 }

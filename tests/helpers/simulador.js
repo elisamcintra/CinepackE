@@ -5,6 +5,7 @@
 //   - IDs múltiplos de 3 têm temas "dystopia" + "time travel" e a diretora "Diretora A"
 //     (é o "gosto" do usuário de teste); os demais têm "small town".
 //   - A busca por nome devolve um filme e uma série com aquele nome, de 2018.
+//   - Trakt: cada série tem 10 relacionadas (IDs pares 5200+), que dependem só do ID dela.
 
 export const chamadas = [];
 
@@ -53,7 +54,13 @@ function detalhes(tipo, id, idioma) {
     content_ratings: { results: [{ iso_3166_1: 'BR', rating: '16' }] },
     keywords: { keywords: palavras, results: palavras },
     credits: { cast: [{ name: gosto ? 'Atriz X' : 'Ator Y', character: 'P' }], crew: [{ job: 'Director', name: gosto ? 'Diretora A' : 'Diretor B' }] },
-    created_by: [{ name: gosto ? 'Diretora A' : 'Diretor B' }],
+    created_by: [{ id: gosto ? 601 : 602, name: gosto ? 'Diretora A' : 'Diretor B' }],
+    aggregate_credits: { cast: [{ id: gosto ? 501 : 502, name: gosto ? 'Atriz X' : 'Ator Y', total_episode_count: 10 }] },
+    networks: [{ id: 213 }],
+    origin_country: ['US'],
+    type: 'Scripted',
+    number_of_episodes: 10,
+    episode_run_time: [45],
   };
 }
 
@@ -74,7 +81,27 @@ function respostaTmdb(u) {
   if (m) {
     const page = Number(u.searchParams.get('page'));
     const base = m[1] === 'movie' ? 1000 : 5000;
-    return { total_pages: 5, results: Array.from({ length: 20 }, (_, i) => ({ id: base + page * 100 + i })) };
+    return {
+      total_pages: 5,
+      results: Array.from({ length: 20 }, (_, i) => {
+        const id = base + page * 100 + i;
+        const gosto = id % 3 === 0;
+        return {
+          id,
+          name: `Série ${id}`,
+          original_name: `Show ${id}`,
+          title: `Filme ${id}`,
+          overview: `Sinopse ${id}`,
+          genre_ids: m[1] === 'tv' ? [gosto ? 10765 : 18] : [gosto ? 878 : 18],
+          original_language: id % 4 === 0 ? 'ko' : 'en',
+          origin_country: ['US'],
+          first_air_date: '2020-01-01',
+          vote_average: 6 + (id % 30) / 10,
+          vote_count: 100 + (id % 7) * 300,
+          popularity: 20,
+        };
+      }),
+    };
   }
   m = p.match(/^\/(movie|tv)\/(\d+)\/recommendations$/);
   if (m) return { results: Array.from({ length: 12 }, (_, i) => ({ id: 3000 + (Number(m[2]) % 50) * 2 + i })) };
@@ -82,6 +109,16 @@ function respostaTmdb(u) {
   if (m) return { results: [] };
   m = p.match(/^\/(movie|tv)\/(\d+)$/);
   if (m) return detalhes(m[1], Number(m[2]), u.searchParams.get('language'));
+  return null;
+}
+
+// Trakt simulado: busca pelo ID do TMDB e séries relacionadas
+export const relacionadasTrakt = (tmdbId) => Array.from({ length: 10 }, (_, i) => 5200 + (tmdbId % 10) * 2 + i * 2);
+function respostaTrakt(u) {
+  let m = u.pathname.match(/^\/search\/tmdb\/(\d+)$/);
+  if (m) return [{ type: 'show', show: { title: `Série ${m[1]}`, ids: { trakt: Number(m[1]) + 100000, tmdb: Number(m[1]) } } }];
+  m = u.pathname.match(/^\/shows\/(\d+)\/related$/);
+  if (m) return relacionadasTrakt(Number(m[1]) - 100000).map((id) => ({ title: `Série ${id}`, year: 2020, ids: { trakt: id + 100000, tmdb: id } }));
   return null;
 }
 
@@ -134,6 +171,10 @@ export function instalarSimulador() {
       const corpo = JSON.parse(opcoes.body);
       const texto = JSON.stringify(respostaIA(corpo.contents[0].parts[0].text));
       return ok({ candidates: [{ content: { parts: [{ text: '```json\n' + texto + '\n```' }] } }] });
+    }
+    if (u.hostname === 'api.trakt.tv') {
+      const d = respostaTrakt(u);
+      return d ? { ...ok(d), headers: new Headers() } : { ok: false, status: 404, headers: new Headers(), json: async () => null };
     }
     if (u.hostname === 'api.themoviedb.org') {
       const d = respostaTmdb(u);

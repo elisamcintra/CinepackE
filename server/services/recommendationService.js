@@ -7,9 +7,11 @@
 //       da pessoa que existem na base (movielensBase.js), cada um com seu peso.
 //    b. Sugestões da IA (conhecimento de cinema), procuradas no TMDB pelo nome.
 //    c. /discover com os gêneros, idiomas e palavras-chave do perfil.
+//    d. Séries: o catálogo INTEIRO de séries da Netflix BR (seriesService.js), pontuado pelo componente de
+//       séries (conteúdo parecido com TODAS as séries da pessoa + relacionadas do Trakt).
 // 2. Verifica CADA um na Netflix BR (netflixCheck) e remove os já vistos/descartados.
 // 3. Se sobrarem menos de 15, amplia a busca automaticamente.
-// 4. Pontua (assinatura de gosto + consenso + MovieLens + qualidade...), garante variedade (MMR)
+// 4. Pontua (assinatura de gosto + consenso + MovieLens + séries + qualidade...), garante variedade (MMR)
 //    e, se a IA estiver disponível, ela escolhe os melhores, dá a % de compatibilidade e explica.
 // 5. O resultado ("pool") fica em cache; o humor do dia só reordena esse pool.
 
@@ -19,13 +21,14 @@ import { anoDoResultado, nomesDoResultado, normalizarNome } from '../lib/texto.j
 import { iaDisponivel, iaRanquear, iaSugerirTitulos } from './aiService.js';
 import { TEMAS_BLOQUEAVEIS } from '../lib/temas.js';
 import { carregarBase } from './movielensBase.js';
+import { carregarBaseSeries, ESCALA_SERIES, prepararSeries, sinaisDeSeries, tituloDoCatalogo } from './seriesService.js';
 import * as movielens from './movielensService.js';
 import { cached, DIA } from './cache.js';
 import { chaveTitulo, descobrirVerificados, verificarVarios } from './netflixCheck.js';
 import { getRatings } from './omdbService.js';
 import { carregarPerfil } from './profileService.js';
-import { aplicarHumor, compatibilidadePorScore, diversificar, motivoPorRegras, pontuar } from './scoring.js';
-import { recommendations, searchMulti } from './tmdbService.js';
+import { aplicarHumor, compatibilidadePorScore, diversificar, equilibrarTipos, motivoPorRegras, pontuar } from './scoring.js';
+import { getTitle, recommendations, searchMulti } from './tmdbService.js';
 import { chavesDoTitulo, nomeGenero } from '../lib/genres.js';
 import { nomeIdioma } from '../lib/languages.js';
 
@@ -81,6 +84,10 @@ export function candidatoParaIA(x) {
       temas_em_comum: x.destaques?.map((d) => d.texto),
       alerta: x.alertas?.length ? x.alertas.map((d) => d.texto) : undefined,
       sugestao_da_ia: sinais.porQueIA || undefined,
+      series_suas_parecidas:
+        t.tipo === 'tv' && sinais.series
+          ? [...new Set([...(sinais.series.trakt?.contribuintes || []), ...(sinais.series.conteudo?.contribuintes || [])].filter((c) => c.contribuicao > 0).map((c) => c.titulo))].slice(0, 3)
+          : undefined,
       movielens: sinais.movielens?.melhor
         ? `quem gostou de ${sinais.movielens.contribuintes.filter((c) => c.contribuicao > 0).slice(0, 3).map((c) => `"${c.titulo}"`).join(', ')} também gostou deste (sinal ${sinais.movielens.pontos} de 3)`
         : undefined,
@@ -103,7 +110,26 @@ export function bloqueado(t, perfil) {
   return (b.generos || []).some((g) => chavesDoTitulo(t.tipo, t.genre_ids || []).includes(g));
 }
 
-export async function ranquear(titulos, perfil, { sinais = new Map(), quantidadeIA = 15, contexto = '', escalaMovielens = movielens.ESCALA_PADRAO } = {}) {
+/**
+ * Regra de ouro: as séries que vieram só do catálogo (versão "leve") são verificadas UMA A UMA na Netflix BR
+ * (getTitle), na ordem da pontuação, até juntar `quantidade` títulos. As indisponíveis saem; as disponíveis
+ * passam a usar os dados completos do TMDB (trailer, classificação...). A pontuação não muda.
+ */
+async function verificarNaOrdem(itens, quantidade) {
+  const saida = [];
+  for (let i = 0; i < itens.length && saida.length < quantidade; i += 12) {
+    const lote = await mapLimit(itens.slice(i, i + 12), 8, async (x) => {
+      if (!x.t._leve) return x;
+      const completo = await getTitle(x.t.tipo, x.t.tmdb_id);
+      return completo?.netflix?.disponivel ? { ...x, t: completo, doCatalogo: true } : null;
+    });
+    for (const x of lote) if (x && saida.length < quantidade) saida.push(x);
+  }
+  return saida;
+}
+
+// opcoes.verificarAte: quantos títulos verificados manter (0 = não verifica; a avaliação usa 0)
+export async function ranquear(titulos, perfil, { sinais = new Map(), quantidadeIA = 15, contexto = '', escalaMovielens = movielens.ESCALA_PADRAO, series = null, escalaSeries = ESCALA_SERIES, verificarAte = 0 } = {}) {
   // Sinal do MovieLens com a base inteira da pessoa (todos os filmes dela que a base conhece)
   const calc = movielens.calcularBase(perfil?.base_movielens);
   const candidatos = titulos.filter((t) => !bloqueado(t, perfil));
@@ -118,10 +144,13 @@ export async function ranquear(titulos, perfil, { sinais = new Map(), quantidade
       }
     }
   }
+  // Componente de séries (só séries): conteúdo + Trakt, com TODAS as séries da pessoa
+  const doComponente = series ? await sinaisDeSeries(series, candidatos, escalaSeries) : null;
   const pontuados = candidatos
     .map((t) => {
       const sn = { ...(sinais.get(chaveTitulo(t.tipo, t.tmdb_id)) || {}) };
       if (t.tipo === 'movie' && sinaisMl.has(t.tmdb_id)) sn.movielens = sinaisMl.get(t.tmdb_id);
+      if (t.tipo === 'tv' && doComponente?.sinais.has(t.tmdb_id)) sn.series = doComponente.sinais.get(t.tmdb_id);
       const p = pontuar(t, perfil, sn);
       return { t, sinais: sn, ...p };
     })
@@ -130,7 +159,24 @@ export async function ranquear(titulos, perfil, { sinais = new Map(), quantidade
   const rastrear = (x) => ({
     total: x.score,
     componentes: x.componentes,
-    origem: [x.sinais.parecidoCom && 'sementes_tmdb', x.sinais.sugeridoPorIA && 'sugestao_ia', x.sinais.deMovielens && 'movielens'].filter(Boolean),
+    origem: [
+      x.sinais.parecidoCom && 'sementes_tmdb',
+      x.sinais.sugeridoPorIA && 'sugestao_ia',
+      x.sinais.deMovielens && 'movielens',
+      (x.doCatalogo || x.t._leve) && 'catalogo_netflix',
+      x.sinais.series?.trakt?.ligacoes > 0 && 'trakt',
+    ].filter(Boolean),
+    series:
+      x.t.tipo !== 'tv'
+        ? { aplicavel: false, motivo: 'O componente de séries só vale para séries.' }
+        : {
+            aplicavel: !!series,
+            base: series ? { series: series.base.total, positivas: series.base.positivas, negativas: series.base.negativas, neutras: series.base.neutras } : null,
+            catalogo_avaliado: x.sinais.series?.catalogo_avaliado ?? null,
+            escala: { ...escalaSeries },
+            conteudo: x.sinais.series?.conteudo || null,
+            trakt: x.sinais.series ? { ...x.sinais.series.trakt, disponivel: series.trakt.disponivel } : null,
+          },
     movielens:
       x.t.tipo === 'tv'
         ? { aplicavel: false, motivo: 'O MovieLens só tem filmes.' }
@@ -147,7 +193,9 @@ export async function ranquear(titulos, perfil, { sinais = new Map(), quantidade
             contribuintes: (x.sinais.movielens?.contribuintes || []).map(({ tmdb_id, titulo, peso, sim, contribuicao }) => ({ tmdb_id, titulo, peso, sim, contribuicao })),
           },
   });
-  const variados = diversificar(pontuados, { quantidade: 45 });
+  const diversos = diversificar(pontuados, { quantidade: 45 });
+  // No app (verificarAte > 0): filmes e séries com pelo menos 30% cada entre os que vão para a IA e o pool
+  const variados = verificarAte ? await verificarNaOrdem(equilibrarTipos(diversos, verificarAte, { tipoDe: (x) => x.t.tipo }), verificarAte) : diversos;
 
   const comRegras = (x) => ({
     ...paraCard(x.t),
@@ -215,7 +263,7 @@ export async function anexarNotas(itens) {
 // ---------- Fontes de candidatos ----------
 
 // a. Sementes: recomendações do TMDB a partir de cada favorito, contando o consenso
-async function candidatosDasSementes(perfil, excluir, sinais) {
+export async function candidatosDasSementes(perfil, excluir, sinais) {
   const vistos = new Set();
   const sementes = [...(perfil.titulos_ancora || []), ...(perfil.sementes || [])]
     .filter((s) => {
@@ -330,13 +378,31 @@ async function gerarPool(perfil, excluir, { nomesVistos = [], chaveSugestoes }) 
     }),
   ]);
 
+  // d. Séries: o catálogo inteiro da Netflix BR, com o componente de séries da pessoa
+  const series =
+    tipos.includes('tv') && perfil.base_series
+      ? await prepararSeries(perfil.base_series).catch((e) => {
+          console.warn('[series] componente indisponível:', e.message);
+          return null;
+        })
+      : null;
+  const doCatalogo = [];
+  if (series) {
+    for (const s of series.catalogo.series) {
+      if (excluir.has(chaveTitulo('tv', s.id))) continue;
+      const t = tituloDoCatalogo(s, series.fichas.get(s.id), series.catalogo.gerado_em);
+      if (filtroFormato(t)) doCatalogo.push(t);
+    }
+  }
+
   const [verificados, ...deConsultas] = await Promise.all([
     verificarVarios([...refsSementes, ...refsIA, ...refsMovielens], filtro),
     ...consultas.map((c) => descobrirVerificados(c, { alvo: 12, maxPaginas: 2, excluir, filtroExtra: filtro })),
   ]);
 
   const unicos = new Map();
-  for (const t of [...verificados, ...deConsultas.flat()]) unicos.set(chaveTitulo(t.tipo, t.tmdb_id), t);
+  // Os já verificados (dados completos) substituem a versão "leve" do catálogo
+  for (const t of [...doCatalogo, ...verificados, ...deConsultas.flat()]) unicos.set(chaveTitulo(t.tipo, t.tmdb_id), t);
 
   // Garantia de mínimo: amplia com filtros mais flexíveis até ter pelo menos 15 candidatos
   const ampliacoes = [
@@ -351,9 +417,9 @@ async function gerarPool(perfil, excluir, { nomesVistos = [], chaveSugestoes }) 
   }
 
   console.log(
-    `[pool] ${unicos.size} candidatos verificados na Netflix (sementes: ${refsSementes.length}, IA: ${refsIA.length}, MovieLens: ${refsMovielens.length}, discover: ${deConsultas.flat().length})`
+    `[pool] ${unicos.size} candidatos (sementes: ${refsSementes.length}, IA: ${refsIA.length}, MovieLens: ${refsMovielens.length}, discover: ${deConsultas.flat().length}, catálogo de séries: ${doCatalogo.length}; Trakt: ${series?.trakt.com_lista ?? 0} de ${series?.trakt.consultadas ?? 0} séries suas com lista)`
   );
-  const ranqueados = await ranquear([...unicos.values()], perfil, { sinais });
+  const ranqueados = await ranquear([...unicos.values()], perfil, { sinais, series, verificarAte: TAMANHO_POOL + 5 });
   return ranqueados.slice(0, TAMANHO_POOL);
 }
 
@@ -363,7 +429,8 @@ export async function obterRecomendacoes(db, userId, { clima, tempo, forcar } = 
   const linhaPerfil = await carregarPerfil(db);
   if (!linhaPerfil) throw new HttpError(404, 'Você ainda não tem um perfil de gosto. Faça o quiz ou importe o histórico.');
   // A base do MovieLens é montada na hora: notas novas já contam, sem esperar o perfil ser recalculado
-  const perfil = { ...linhaPerfil.perfil, base_movielens: await carregarBase(db) };
+  // As bases são montadas na hora: notas novas já contam, sem esperar o perfil ser recalculado
+  const perfil = { ...linhaPerfil.perfil, base_movielens: await carregarBase(db), base_series: await carregarBaseSeries(db) };
   // Temas bloqueados também vão para a IA, para ela nem sugerir
   const nomesBloqueados = (perfil.temas_bloqueados?.ids || []).map((id) => TEMAS_BLOQUEAVEIS[id]?.nome).filter(Boolean);
   if (nomesBloqueados.length) perfil.evitar = [...new Set([...(perfil.evitar || []), ...nomesBloqueados])];
@@ -395,7 +462,9 @@ export async function obterRecomendacoes(db, userId, { clima, tempo, forcar } = 
 
   const livres = pool.filter((t) => !excluir.has(chaveTitulo(t.tipo, t.tmdb_id)));
   const { itens: comHumor, aviso: avisoHumor } = aplicarHumor(livres, { clima, tempo }, MINIMO);
-  const finais = await anexarNotas(comHumor.slice(0, 20));
+  // Pelo menos 30% de filmes e 30% de séries nas 20 finais (se houver). Na "maratona" a pessoa pediu séries.
+  const equilibrados = tempo === 'maratona' ? comHumor : equilibrarTipos(comHumor, 20);
+  const finais = await anexarNotas(equilibrados.slice(0, 20));
 
   let aviso = avisoHumor;
   if (finais.length < MINIMO) {
@@ -407,5 +476,6 @@ export async function obterRecomendacoes(db, userId, { clima, tempo, forcar } = 
     gerado_em: geradoEm,
     aviso,
     movielens_base: { disponiveis: perfil.base_movielens.disponiveis, minimo: perfil.base_movielens.minimo, alfa: perfil.base_movielens.alfa, aviso: perfil.base_movielens.aviso },
+    series_base: { total: perfil.base_series.total, positivas: perfil.base_series.positivas, negativas: perfil.base_series.negativas, neutras: perfil.base_series.neutras },
   };
 }

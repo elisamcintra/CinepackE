@@ -248,10 +248,26 @@ Cada candidato é comparado com essa assinatura (similaridade de cosseno).
 - **Conhecimento da IA:** ela sugere títulos pelo nome, como um curador faria. O servidor procura cada um
   no TMDB, exige que **nome e ano batam** e verifica na Netflix. O que não bater é descartado.
 - **Descoberta:** busca no catálogo da Netflix BR pelos seus gêneros, idiomas e palavras-chave.
+- **Séries:** o catálogo **inteiro** de séries da Netflix BR (~3.500), avaliado pelo componente de séries (abaixo).
 
 **3. Pontuação**, sempre calculada, com ou sem IA: assinatura de gosto + consenso + **filtragem colaborativa**
-(MovieLens: "quem amou os mesmos filmes que você também amou este") + gêneros e idiomas + **nota bayesiana**. A nota bayesiana é a mesma ideia do ranking do IMDb: um 9,0 com 12 votos vale menos
+(MovieLens: "quem amou os mesmos filmes que você também amou este") + **componente de séries** + gêneros e
+idiomas + **nota bayesiana**. A nota bayesiana é a mesma ideia do ranking do IMDb: um 9,0 com 12 votos vale menos
 que um 8,2 com 20 mil votos.
+
+**Componente de séries** (`server/services/seriesService.js`, só para séries). Usa **todas** as suas séries, sem
+nenhum limite, cada uma com o seu peso (nota no app > "Não me interessa" > o quanto você assistiu; as que você
+largou no começo contam contra). Para cada série do catálogo, soma dois sinais:
+- **Conteúdo (TMDB):** o quanto ela se parece com cada série sua em sinopse, temas, gêneros, criadores, elenco e
+  origem (TF-IDF: temas raros valem mais que os comuns). As séries mais parecidas mandam no sinal.
+- **Trakt:** se ela está na lista de "relacionadas" de séries suas (e em que posição). Precisa do `TRAKT_CLIENT_ID`.
+
+Os dois viram pontos de −1,5 a +3, centrados na média do catálogo (a série média ganha 0). O "🔍 Rastreamento da
+nota" mostra quanto cada um somou e de quais séries suas veio o sinal. As fichas das séries ficam guardadas por
+30 dias e as listas do Trakt também; quem importa o histórico já tem tudo preparado em segundo plano.
+Para os filmes não sumirem da lista (agora há milhares de séries candidatas), as 20 finais têm pelo menos 30% de
+filmes e 30% de séries, quando houver dos dois (menos no humor "maratona").
+Avaliação com os seus dados: `npm run avaliar:series -- --email=voce@exemplo.com`.
 
 **4. Variedade (MMR):** evita 10 cards quase iguais, por exemplo todos derivados do mesmo favorito.
 

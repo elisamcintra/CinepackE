@@ -101,6 +101,60 @@ export function discover(tipo, params, page = 1) {
   });
 }
 
+/**
+ * Catálogo INTEIRO de séries da Netflix Brasil (assinatura), segundo o TMDB/JustWatch: todas as páginas do
+ * /discover/tv, sem filtro de votos nem de gênero. Fica em cache por 12h (um item só, para carregar rápido).
+ * Cada série vem num formato compacto; a verificação individual na Netflix continua sendo feita antes de
+ * um título aparecer para a pessoa (netflixCheck.js).
+ */
+export function catalogoSeriesNetflix() {
+  return cached('catalogo:tv:netflix-br:v1', 12 * HORA, async () => {
+    const params = {
+      language: 'pt-BR',
+      watch_region: 'BR',
+      with_watch_providers: NETFLIX_IDS.join('|'),
+      with_watch_monetization_types: 'flatrate',
+      include_adult: false,
+      sort_by: 'popularity.desc',
+    };
+    const primeira = await tmdbFetch('/discover/tv', { ...params, page: 1 });
+    // O TMDB devolve no máximo 500 páginas (10 mil títulos); o catálogo de séries da Netflix BR tem ~3.500
+    const paginas = Math.min(primeira?.total_pages || 0, 500);
+    const resto = await Promise.all(Array.from({ length: Math.max(paginas - 1, 0) }, (_, i) => tmdbFetch('/discover/tv', { ...params, page: i + 2 }).catch(() => null)));
+    const unicos = new Map();
+    for (const pagina of [primeira, ...resto]) {
+      for (const r of pagina?.results || []) {
+        if (!r?.id || unicos.has(r.id)) continue;
+        unicos.set(r.id, {
+          id: r.id,
+          nome: r.name || r.original_name || '',
+          nome_original: r.original_name || r.name || '',
+          sinopse: r.overview || '',
+          generos: r.genre_ids || [],
+          paises: r.origin_country || [],
+          idioma: r.original_language || null,
+          estreia: r.first_air_date || null,
+          poster: r.poster_path || null,
+          fundo: r.backdrop_path || null,
+          nota: r.vote_average || 0,
+          votos: r.vote_count || 0,
+          popularidade: r.popularity || 0,
+        });
+      }
+    }
+    return { gerado_em: new Date().toISOString(), paginas, series: [...unicos.values()] };
+  });
+}
+
+/**
+ * Dados "de conteúdo" de uma série, em inglês (sinopse completa para o TF-IDF): palavras-chave, criadores,
+ * elenco de TODOS os episódios (aggregate_credits), emissoras, país, idioma e temporadas.
+ * Sem cache aqui: quem chama (seriesFichas.js) guarda o resultado por 30 dias.
+ */
+export function fichaSerieTmdb(id) {
+  return tmdbFetch(`/tv/${id}`, { language: 'en-US', append_to_response: 'keywords,aggregate_credits' });
+}
+
 export function recommendations(tipo, id, page = 1) {
   return cached(`tmdb:recs:${tipo}:${id}:${page}`, 7 * DIA, async () => {
     const data = await tmdbFetch(`/${tipo}/${id}/recommendations`, { language: 'pt-BR', page });

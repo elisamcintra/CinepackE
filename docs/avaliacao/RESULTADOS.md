@@ -61,3 +61,29 @@ todos "vistos 1 vez" (nenhum tem nota).
 Testes automáticos que protegem o resultado (`tests/movielens-base.test.js`): falham se o MovieLens tiver
 contribuição zero, se algum filme disponível ficar fora da base, se a fórmula do peso mudar, se o aviso de < 20 sumir
 ou se o rastreamento não somar a pontuação. Provado por mutação: com o MovieLens desligado, 2 testes falham.
+
+## 4. Componente de séries (conteúdo do TMDB + Trakt), 29/10/2026
+
+Avaliação com os dados da usuária (`npm run avaliar:series`), 5 partes, sem IA. Base: 147 séries (111 a favor,
+36 contra), todas usadas. Teste: 102 séries que ela gostou e 36 que largou ou avaliou mal, escondidas 1/5 por vez,
+entre 100 séries da Netflix BR nunca vistas (≥ 200 votos). Catálogo avaliado: 3.498 séries. Trakt: 144 de 147
+séries com lista de relacionadas.
+
+| Versão | HitRate@10 | NDCG@10 | AUC (gostou × não gostou) |
+|---|---:|---:|---:|
+| (1) Sistema atual | 80,0% | 0,162 | 0,444 |
+| (2) + conteúdo | 80,0% | 0,193 | 0,405 |
+| (3) + Trakt | 80,0% | 0,223 | 0,497 |
+| **(4) + conteúdo + Trakt (no app)** | **80,0%** | **0,239** | **0,468** |
+| (4) com p = 1 | 80,0% | 0,248 | 0,472 |
+| (4) com p = 3 | 80,0% | 0,254 | 0,472 |
+| Só o conteúdo (diagnóstico) | 80,0% | 0,180 | 0,387 |
+| Só o Trakt (diagnóstico) | 80,0% | 0,249 | 0,549 |
+
+Critério fixado antes de rodar (NDCG sobe, HitRate não cai, AUC cai no máximo 0,02): **aprovado**.
+Ressalvas: o NDCG subiu em 2 das 5 partes (caiu levemente em 2; a 5ª ficou em 0 para todas as versões), então o
+ganho médio depende de poucas partes; o AUC fica abaixo de 0,5 em todas as versões com conteúdo (as séries que ela
+largou se parecem com as que ela gosta); o Trakt sozinho teve o melhor AUC. p = 2 foi mantido (definido antes);
+p = 3 foi um pouco melhor, mas escolher depois de ver o resultado seria ajustar ao teste.
+Filmes: pontuação e posição idênticas com e sem o componente (40 filmes conferidos). Nas 20 finais, um mínimo de
+30% de filmes e de séries (critério A8) evita que as ~3.500 séries candidatas tirem os filmes da lista.

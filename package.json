@@ -18,7 +18,8 @@
     "mineracao:experimentos": "node --max-old-space-size=6144 scripts/mineracao/experimentos.js",
     "avaliar:usuario": "node --env-file=server/.env scripts/avaliacao/usuario.js",
     "avaliar:comparar": "node --env-file=server/.env scripts/avaliacao/comparar.js",
-    "avaliar:trakt": "node --env-file=server/.env scripts/avaliacao/trakt-cobertura.js"
+    "avaliar:trakt": "node --env-file=server/.env scripts/avaliacao/trakt-cobertura.js",
+    "avaliar:series": "node --env-file=server/.env scripts/avaliacao/series.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",

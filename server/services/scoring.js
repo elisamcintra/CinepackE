@@ -6,6 +6,7 @@
 //   2. Consenso: quantos títulos que a pessoa amou levam a este (recomendações do TMDB)
 //   3. Sugestão da IA (conhecimento de cinema), já verificada na Netflix
 //   3b. Filtragem colaborativa (MovieLens): todos os seus filmes da base, com pesos (movielensBase.js)
+//   3c. Séries (só séries): conteúdo parecido com TODAS as suas séries (TMDB) e relacionadas do Trakt (seriesService.js)
 //   4. Gêneros favoritos / evitados e idiomas preferidos
 //   5. Qualidade: nota bayesiana (desconfia de notas altas com poucos votos)
 //   6. Formato preferido (filmes curtos, minisséries...)
@@ -34,6 +35,7 @@ const limitar = (v, min, max) => Math.max(min, Math.min(max, v));
  *   sugeridoPorIA: true,      veio das sugestões da IA
  *   porQueIA: '...'           a justificativa da IA
  *   movielens: { pontos, S, contribuintes, melhor }   (só filmes; ver movielensService.sinalDoCandidato)
+ *   series: { conteudo: { pontos, contribuintes }, trakt: { pontos, contribuintes } }   (só séries; seriesService.js)
  * }
  * Devolve também `componentes`: quanto cada parte somou (o "rastreamento" da nota). score = soma dos componentes.
  */
@@ -42,7 +44,7 @@ export function pontuar(t, perfil, sinais = {}) {
   const fav = new Map((perfil?.generos_favoritos || []).map((g) => [g.chave, g.peso]));
   const evita = new Map((perfil?.generos_evitar || []).map((g) => [g.chave, g]));
   const razoes = [];
-  const c = { assinatura_tmdb: 0, consenso_tmdb: 0, ia_sugestao: 0, movielens: 0, generos: 0, idioma: 0, palavras_chave: 0, qualidade: 0, formato: 0 };
+  const c = { assinatura_tmdb: 0, consenso_tmdb: 0, ia_sugestao: 0, movielens: 0, conteudo_series: 0, trakt: 0, generos: 0, idioma: 0, palavras_chave: 0, qualidade: 0, formato: 0 };
 
   // 1. Assinatura de gosto (TMDB: temas, criadores, elenco, idioma, década)
   const sim = similaridade(t, perfil?.assinatura);
@@ -66,6 +68,16 @@ export function pontuar(t, perfil, sinais = {}) {
   if (sinais.movielens?.pontos) {
     c.movielens = sinais.movielens.pontos;
     if (sinais.movielens.melhor && c.movielens > 0) razoes.push({ tipo: 'colaborativo', ...sinais.movielens.melhor, quantos: sinais.movielens.quantos });
+  }
+
+  // 3c. Componente de séries: nunca vale para filmes
+  if (t.tipo === 'tv' && sinais.series) {
+    c.conteudo_series = sinais.series.conteudo?.pontos || 0;
+    c.trakt = sinais.series.trakt?.pontos || 0;
+    const deTrakt = (sinais.series.trakt?.contribuintes || []).filter((x) => x.contribuicao > 0);
+    const deConteudo = (sinais.series.conteudo?.contribuintes || []).filter((x) => x.contribuicao > 0);
+    if (c.trakt > 0 && deTrakt.length) razoes.push({ tipo: 'trakt', titulos: deTrakt.map((x) => x.titulo), quantos: sinais.series.trakt.ligacoes });
+    if (c.conteudo_series > 0 && deConteudo.length) razoes.push({ tipo: 'conteudo_series', titulos: deConteudo.map((x) => x.titulo) });
   }
 
   // 4. Gêneros e idioma
@@ -125,6 +137,8 @@ export function motivoPorRegras(t, razoes = []) {
   const temas = razoes.find((r) => r.tipo === 'temas');
   const ia = razoes.find((r) => r.tipo === 'ia');
   const colab = razoes.find((r) => r.tipo === 'colaborativo');
+  const trakt = razoes.find((r) => r.tipo === 'trakt');
+  const conteudoSeries = razoes.find((r) => r.tipo === 'conteudo_series');
   const genero = razoes.filter((r) => r.tipo === 'genero').sort((a, b) => b.peso - a.peso)[0];
   const idioma = razoes.find((r) => r.tipo === 'idioma');
   const notaBoa = t.nota_tmdb >= 7.5 && t.votos >= 100;
@@ -141,6 +155,13 @@ export function motivoPorRegras(t, razoes = []) {
   if (colab?.titulo) {
     const outros = colab.quantos > 1 ? ` e mais ${colab.quantos - 1} ${colab.quantos === 2 ? 'filme seu' : 'filmes seus'}` : '';
     return `Quem gostou de "${colab.titulo}"${outros} também costuma gostar deste, segundo as notas de milhares de pessoas do MovieLens.`;
+  }
+  if (trakt?.titulos?.length) {
+    const nomes = trakt.titulos.slice(0, 2).map((x) => `"${x}"`);
+    return `Relacionada a ${juntar(nomes)}${trakt.quantos > 2 ? ` e mais ${trakt.quantos - 2} séries suas` : ''}, segundo quem acompanha séries no Trakt.`;
+  }
+  if (conteudoSeries?.titulos?.length) {
+    return `Parecida com ${juntar(conteudoSeries.titulos.slice(0, 2).map((x) => `"${x}"`))}, que você curtiu: temas, história e equipe em comum.`;
   }
   if (ancora && temasTexto?.length) return `Parecido com "${ancora.titulo}", que você amou: também tem ${juntar(temasTexto.slice(0, 2))}.`;
   if (ancora) return `Parecido com "${ancora.titulo}", que você amou.`;
@@ -184,14 +205,17 @@ export function diversificar(itens, { quantidade = itens.length, penalidade = 2.
 
   const escolhidos = [];
   const resto = [...itens];
+  // Maior semelhança de cada candidato com os já escolhidos, atualizada só com o último escolhido
+  // (mesmo resultado que comparar com todos de novo, mas rápido com milhares de candidatos)
+  const maxSim = new Map(resto.map((x) => [x, 0]));
   while (resto.length && escolhidos.length < quantidade) {
+    const ultimo = escolhidos.at(-1);
     let melhor = 0;
     let melhorValor = -Infinity;
     for (let i = 0; i < resto.length; i++) {
-      const c = caracteristicas.get(resto[i]);
-      let maxSim = 0;
-      for (const e of escolhidos) maxSim = Math.max(maxSim, jaccard(c, caracteristicas.get(e)));
-      const valor = resto[i].score - penalidade * maxSim;
+      const x = resto[i];
+      if (ultimo) maxSim.set(x, Math.max(maxSim.get(x), jaccard(caracteristicas.get(x), caracteristicas.get(ultimo))));
+      const valor = x.score - penalidade * maxSim.get(x);
       if (valor > melhorValor) {
         melhorValor = valor;
         melhor = i;
@@ -200,6 +224,34 @@ export function diversificar(itens, { quantidade = itens.length, penalidade = 2.
     escolhidos.push(resto.splice(melhor, 1)[0]);
   }
   return [...escolhidos, ...resto];
+}
+
+/**
+ * Equilíbrio entre filmes e séries: nos primeiros `n`, cada tipo fica com pelo menos `minimo` (30%), se houver.
+ * Por quê: o componente de séries avalia o catálogo inteiro (~3.500 séries) e, sem isso, as séries ocupavam
+ * todas as vagas (20 de 20), tirando os filmes da lista sem que a nota deles tivesse mudado. Os 30% vêm do
+ * critério A8 aprovado na Fase 1 (séries entre 30% e 70% das finais).
+ * Quem entra é o melhor colocado do tipo que falta; quem sai é o pior colocado do tipo que sobra.
+ */
+export const MINIMO_POR_TIPO = 0.3;
+export function equilibrarTipos(lista, n, { minimo = MINIMO_POR_TIPO, tipoDe = (x) => x.tipo } = {}) {
+  const cota = Math.ceil(n * minimo);
+  const topo = lista.slice(0, n);
+  const resto = lista.slice(n);
+  for (const [tipo, outro] of [['movie', 'tv'], ['tv', 'movie']]) {
+    let faltam = cota - topo.filter((x) => tipoDe(x) === tipo).length;
+    while (faltam > 0) {
+      const iEntra = resto.findIndex((x) => tipoDe(x) === tipo);
+      if (iEntra < 0 || topo.filter((x) => tipoDe(x) === outro).length <= cota) break;
+      const iSai = topo.findLastIndex((x) => tipoDe(x) === outro);
+      const [sai] = topo.splice(iSai, 1);
+      const [entra] = resto.splice(iEntra, 1);
+      topo.push(entra);
+      resto.unshift(sai);
+      faltam--;
+    }
+  }
+  return [...topo, ...resto];
 }
 
 /**
