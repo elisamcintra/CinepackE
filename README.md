@@ -269,6 +269,14 @@ Para os filmes não sumirem da lista (agora há milhares de séries candidatas),
 filmes e 30% de séries, quando houver dos dois (menos no humor "maratona").
 Avaliação com os seus dados: `npm run avaliar:series -- --email=voce@exemplo.com`.
 
+**Perguntas rápidas** (`server/services/perguntasService.js`). O app pergunta sobre os títulos que você viu e que mais
+pesam nas suas recomendações, **só com toques**: "Você gostou?" (Amei · Gostei · Mais ou menos · Não gostei · Não lembro)
+e, para séries largadas no começo, "Por que você parou?" (Não gostei · Ainda vou ver · Outro motivo). Cada resposta
+vira nota (que vale mais que o histórico) ou tira a série largada da conta "não gostei". Rodadas de 10; um título
+respondido nunca volta. Aparece como aviso em **Para você** e como cartão em **Meu gosto**, que também mostra a
+**taxa de aprovação** das recomendações (Quero ver / Já vi com 4–5★ contra Não me interessa / 1–2★, só das reações
+feitas em Para você).
+
 **4. Variedade (MMR):** evita 10 cards quase iguais, por exemplo todos derivados do mesmo favorito.
 
 **5. Curadoria da IA:** recebe os 30 melhores com os sinais calculados, escolhe os 15 que mais combinam,
@@ -358,6 +366,8 @@ Todos (menos `health` e `genres`) exigem login: o navegador envia o token do Sup
 | POST | `/api/search` | pesquisa com filtros + texto livre |
 | GET | `/api/title/:tipo/:id` · `/reviews` | detalhes completos / resumo das resenhas |
 | GET/POST/DELETE | `/api/user-titles` | Já vi / Quero ver / Não me interessa |
+| GET | `/api/perguntas` · `/api/perguntas/resumo` | próxima rodada de Perguntas rápidas / pendentes e taxa de aprovação |
+| POST | `/api/perguntas/resposta` | grava uma resposta (só as opções fixas; texto livre é recusado) |
 
 ### Adicionando um novo projeto ao hub (futuro)
 1. Crie `src/modules/<nome>/routes.jsx` seguindo o modelo do CineMatch.
